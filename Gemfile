@@ -16,6 +16,7 @@ gem 'devise'
 gem 'cancan'
 gem 'pg'
 gem 'turbolinks'
+gem 'httparty'
 
 group :development do
   # gem 'better_errors'

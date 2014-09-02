@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :profile
+  resources :team
 
   root to: "profile#index"
 

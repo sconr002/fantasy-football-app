@@ -15,6 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cancan'
 gem 'pg'
+gem 'turbolinks'
 
 group :development do
   # gem 'better_errors'

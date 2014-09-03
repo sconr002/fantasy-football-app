@@ -3,15 +3,13 @@ class ProfileController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    #manually setting the team here
-    @players = current_user.teams.find_by_id(1).players
+    @players = current_team.players
     @players.each { |player| player.injury_update }
     render :index
   end
 
   def create
-    #manually setting the team here
-    @player = current_user.teams.find_by_id(1).players.new player_params
+    @player = current_team.players.new player_create_params
     if @player.save
       render :show
     else
@@ -21,8 +19,12 @@ class ProfileController < ApplicationController
 
 private
 
-  def player_params
+  def player_create_params
     params.require(:player).permit(:name, :pos, :nfl_team)
+  end
+
+  def current_team
+    current_user.teams.find_by_name(params[:team])
   end
 
 end

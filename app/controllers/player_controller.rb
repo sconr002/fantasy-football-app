@@ -1,13 +1,6 @@
-class ProfileController < ApplicationController
+class PlayerController < ApplicationController
 
   # before_action :authenticate_user!
-
-  def index
-    @players = current_team.players
-    @players.each { |player| player.injury_update }
-    render :index
-  end
-
   def create
     @player = current_team.players.new player_create_params
     if @player.save

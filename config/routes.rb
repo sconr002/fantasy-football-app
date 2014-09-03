@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :profile
   resources :team
-
-  root to: "profile#index"
+  resources :player
 
 end
   # The priority is based upon order of creation: first created -> highest priority.

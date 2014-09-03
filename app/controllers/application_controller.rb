@@ -12,13 +12,13 @@ private
     # Otherwise, look it up via api key sent in the AUTH_TOKEN header
     # Note: if this header isn't set, we should probably fall back on using the
     #   built in Devise auth handling
-    # token = request.headers["HTTP_AUTH_TOKEN"]
+    token = 't1' #request.headers["HTTP_AUTH_TOKEN"]
 
     # Look up the key (raises 404 if not found, which isn't the _best_ way to handle that)
-    # key = ApiKey.where(token: token).first!
+    key = ApiKey.where(token: token).first!
 
     # Set the user for future calls (should be "= key.user" below here)
-    @_current_user = User.find_by_id(1)
+    @_current_user = key.user
   end
 
   def render_invalid obj

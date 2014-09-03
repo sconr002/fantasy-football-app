@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :teams, dependent: :destroy
+  has_many :api_keys, dependent: :destroy
 end

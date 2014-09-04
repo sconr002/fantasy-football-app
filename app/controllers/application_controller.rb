@@ -1,26 +1,40 @@
-class ApplicationController < ActionController::API #change this to BASE
+class ApplicationController < ActionController::Base
   include ActionController::MimeResponds
 
-  #take this out, but let eric know he needs to request JSON
-  before_action :jsonify
+  protect_from_forgery with: :exception, unless: :api_request?
+
+  def current_team
+    current_user.teams.find_by_name(params[:team])
+  end
+
+  def api_request?
+    request.headers["HTTP_AUTH_TOKEN"] != nil
+  end
+
+  def home
+    render :home
+  end
 
 private
 
   def current_user
-    # Return the current user if we've already set one
-    return @_current_user if @_current_user
+    if api_request?
+      # Return the current user if we've already set one
+      return @_current_user if @_current_user
 
-    # Otherwise, look it up via api key sent in the AUTH_TOKEN header
-    # Note: if this header isn't set, we should probably fall back on using the
-    #   built in Devise auth handling
-    token = request.headers["HTTP_AUTH_TOKEN"]
+      # Otherwise, look it up via api key sent in the AUTH_TOKEN header
+      # Note: if this header isn't set, we should probably fall back on using the
+      #   built in Devise auth handling
+      token = request.headers["HTTP_AUTH_TOKEN"]
 
-    # Look up the key (raises 404 if not found, which isn't the _best_ way to handle that)
-    key = ApiKey.where(token: token).first!
+      # Look up the key (raises 404 if not found, which isn't the _best_ way to handle that)
+      key = ApiKey.where(token: token).first!
 
-    # Set the user for future calls (should be "= key.user" below here)
-    @_current_user = key.user
-
+      # Set the user for future calls (should be "= key.user" below here)
+      @_current_user = key.user
+    else
+      super
+    end
   end
 
   def render_invalid obj
@@ -36,9 +50,3 @@ private
   end
 
 end
-
-# class ApplicationController < ActionController::Base
-#   # Prevent CSRF attacks by raising an exception.
-#   # For APIs, you may want to use :null_session instead.
-#   protect_from_forgery with: :exception
-# end

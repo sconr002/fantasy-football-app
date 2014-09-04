@@ -17,7 +17,6 @@ gem 'cancan'
 gem 'pg'
 gem 'turbolinks'
 gem 'httparty'
-gem 'rails-api'
 
 group :production do
   gem 'rails_12factor'

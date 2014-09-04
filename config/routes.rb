@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
-  devise_for :users
   resources :profile
   resources :team
   resources :player
 
+  devise_for :users
+
+  #devise_scope :user do
+  #  get "/" => "devise/sessions#new"
+  #end
+
+  root to: "application#home"
+  #root to: "devise/sessions#new"
 end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -35,7 +42,7 @@ end
 
   # Example resource route with sub-resources:
   #   resources :products do
-  #     resources :comments, :sales
+  #     resources :comments, :sale
   #     resource :seller
   #   end
 

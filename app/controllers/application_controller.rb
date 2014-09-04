@@ -1,6 +1,7 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::API #change this to BASE
   include ActionController::MimeResponds
 
+  #take this out, but let eric know he needs to request JSON
   before_action :jsonify
 
 private

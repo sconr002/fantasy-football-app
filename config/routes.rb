@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: "team#show"
+  root to: "team#index"
   #root to: "devise/sessions#new"
 end
   # The priority is based upon order of creation: first created -> highest priority.

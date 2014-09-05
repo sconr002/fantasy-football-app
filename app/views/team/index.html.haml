@@ -1,0 +1,10 @@
+%h3 Select the team you would like to view below
+
+- if current_user
+  %h5 TEAMS
+  - @teams.each do |team|
+    %li= link_to "#{team.name}", team_path(id: team.id)
+
+- else
+  %li= link_to "Log In", new_user_session_path
+  %li= link_to "Sign up", new_user_registration_path

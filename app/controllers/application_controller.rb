@@ -11,10 +11,6 @@ class ApplicationController < ActionController::Base
     request.headers["HTTP_AUTH_TOKEN"] != nil
   end
 
-  def home
-    render :home
-  end
-
 private
 
   def current_user

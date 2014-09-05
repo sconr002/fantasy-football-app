@@ -6,11 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  #devise_scope :user do
-  #  get "/" => "devise/sessions#new"
-  #end
-
-  root to: "application#home"
+  root to: "team#show"
   #root to: "devise/sessions#new"
 end
   # The priority is based upon order of creation: first created -> highest priority.

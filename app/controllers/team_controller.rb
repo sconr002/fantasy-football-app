@@ -7,10 +7,27 @@ class TeamController < ApplicationController
   end
 
   def show
-    @id = params[:id]
-     # @players = current_team.players
-    # @players.each { |player| player.injury_update }
-    # render :show
+    @team = Team.find_by_id(params[:id])
+    @players = @team.players
+  end
+
+  def new
+    @team = Team.new
+  end
+
+  def create
+    @team = current_user.teams.new create_params
+    if @team.save
+      redirect_to @team, notice: "Your team was created, now add some players"
+    else
+      render :new
+    end
+  end
+
+private
+
+  def create_params
+    params.require(:team).permit(:name)
   end
 
 end

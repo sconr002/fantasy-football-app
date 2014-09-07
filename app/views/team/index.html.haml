@@ -1,7 +1,10 @@
-%h3 Select the team you would like to view below
+%h3 TEAMS
 
 - if current_user
-  %h5 TEAMS
+
+  %li= link_to "Create New Team", new_team_path
+
+  %h5 Current Teams
   - @teams.each do |team|
     %li= link_to "#{team.name}", team_path(id: team.id)
 

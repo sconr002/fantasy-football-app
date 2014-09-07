@@ -1,1 +1,20 @@
-%h3 Team Show Page
+%h3= "Team #{@team.name}"
+
+%h5= link_to "Add Players to Team", new_player_path
+
+%p
+  .row
+    .col-md-6
+      %table.table
+        %thead
+          %tr
+            %th Player
+            %th Position
+            %th Team
+        %tbody
+        - @players.each do |player|
+          %tr
+            %td= player.name
+            %td= player.pos
+            %td= player.nfl_team
+    .col-md-6

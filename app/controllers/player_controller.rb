@@ -2,10 +2,15 @@ class PlayerController < ApplicationController
 
   before_action :authenticate_user!, unless: :api_request?
 
+  def new
+    @player = Player.new
+  end
+
   def create
-    @player = current_team.players.new player_create_params
+    @current_team = current_team
+    @player = @team.players new player_create_params
     if @player.save
-      render :show
+      redirect_to @player, notice: "Player added!"
     else
       render_invalid @player
     end
@@ -15,6 +20,10 @@ private
 
   def player_create_params
     params.require(:player).permit(:name, :pos, :nfl_team)
+  end
+
+  def current_team
+    @current_team = Team.find_by_id(params[:id])
   end
 
 end

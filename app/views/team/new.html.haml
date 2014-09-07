@@ -1,0 +1,5 @@
+%h3 Create New Team
+
+= form_for @team, url: {action: "create"}, html: {class: "form"} do |f|
+  = f.text_field :name
+  = f.submit "Submit", class: "btn btn-primary"

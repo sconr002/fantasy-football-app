@@ -1,0 +1,16 @@
+%h3 Create New Player
+
+= form_for @player, url: {action: "create"}, html: {class: "form"} do |f|
+  %p Name
+  = f.text_field :name
+  %br
+  %br
+  %p Position
+  = f.text_field :pos
+  %br
+  %br
+  %p NFL Team
+  = f.text_field :nfl_team
+  %br
+  %br
+  = f.submit "Submit", class: "btn btn-primary"

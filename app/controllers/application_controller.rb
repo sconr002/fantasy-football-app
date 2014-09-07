@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception, unless: :api_request?
 
-  def current_team
-    current_user.teams.find_by_name(params[:team])
-  end
-
   def api_request?
     request.headers["HTTP_AUTH_TOKEN"] != nil
   end

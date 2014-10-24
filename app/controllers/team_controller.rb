@@ -7,6 +7,7 @@ class TeamController < ApplicationController
   end
 
   def show
+    Player.injury_update
     @team = Team.find_by_id(params[:id])
     @players = @team.players
   end

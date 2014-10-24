@@ -1,6 +1,8 @@
 %h3= "Team #{@team.name}"
 
-%h5= link_to "Add Players to Team", new_player_path
+=form_tag(new_player_path, method: :get) do
+  =hidden_field_tag :team_id, @team.id
+  %h5= submit_tag 'Add Players to Team'
 
 %p
   .row
@@ -11,10 +13,12 @@
             %th Player
             %th Position
             %th Team
+            %th Injured
         %tbody
         - @players.each do |player|
           %tr
             %td= player.name
             %td= player.pos
             %td= player.nfl_team
+            %td= player.injured ? "Yes" : "No"
     .col-md-6

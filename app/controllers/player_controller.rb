@@ -4,26 +4,26 @@ class PlayerController < ApplicationController
 
   def new
     @player = Player.new
+    @team = Team.find_by_id(params[:team_id])
   end
 
   def create
-    @current_team = current_team
-    @player = @team.players new player_create_params
+    @player = Player.new player_create_params
     if @player.save
-      redirect_to @player, notice: "Player added!"
+      @team = Team.find_by_id(params[:player][:team_id])
     else
       render_invalid @player
     end
   end
 
+  def destroy
+    binding.pry
+  end
+
 private
 
   def player_create_params
-    params.require(:player).permit(:name, :pos, :nfl_team)
-  end
-
-  def current_team
-    @current_team = Team.find_by_id(params[:id])
+    params.require(:player).permit(:name, :pos, :nfl_team, :team_id)
   end
 
 end

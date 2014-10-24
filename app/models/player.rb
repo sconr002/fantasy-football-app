@@ -4,8 +4,8 @@ class Player < ActiveRecord::Base
 
   include HTTParty
 
-  def injury_update
-    response = HTTParty.get('http://www.fantasyfootballnerd.com/service/injuries/json/test/')
+  def self.injury_update
+    response = HTTParty.get("http://www.fantasyfootballnerd.com/service/injuries/json/#{ENV["FF_KEY"]}/")
     @injured = []
     #uses the API to populate @injured with the names of players injured that week
     response['Injuries'].each do |key, value|
@@ -14,9 +14,11 @@ class Player < ActiveRecord::Base
       end
     end
     #changes the player to injured true if they are hurt
-    if @injured.include?(self.name)
-      self.injured = true
-      self.save!
+    Player.all.each do |player|
+      if @injured.include?(player.name)
+        player.injured = true
+        player.save!
+      end
     end
   end
 

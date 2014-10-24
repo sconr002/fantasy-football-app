@@ -1,6 +1,7 @@
 %h3 Create New Player
 
 = form_for @player, url: {action: "create"}, html: {class: "form"} do |f|
+  = f.hidden_field :team_id, value: @team.id
   %p Name
   = f.text_field :name
   %br

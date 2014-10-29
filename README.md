@@ -2,7 +2,7 @@ Fantasy Football Injury Report
 -------------------------------
 
 This application was built to allow users to enter their fantasy football players
-and then see if any of their players are injured.
+and then see, on a week to week basis, if any of their players are injured.
 
 To run locally, you will need to get an API key from Fantasy Football Nerd. https://www.fantasyfootballnerd.com
 

@@ -1,6 +1,0 @@
-== README
-
-Taylor and Eric's Fantasy Football App
-
-- enter your team
-- see which of your players are injured or on a bye week

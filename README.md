@@ -21,7 +21,7 @@ rake db:setup
 Once you have a key from Fantasy Football Nerd, you will need to store the key
 in the local copy of your application.
 
-Navigate to the application.yml and store your API key as shown below.
+Navigate to the *application.yml* file and store your API key as shown below.
 
 ```
 FF_KEY: {your API key}

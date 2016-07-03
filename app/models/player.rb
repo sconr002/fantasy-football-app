@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
   include HTTParty
 
   def self.injury_update
-    response = HTTParty.get("http://www.fantasyfootballnerd.com/service/injuries/json/#{ENV["FF_KEY"]}/")
+    response = HTTParty.get("http://www.fantasyfootballnerd.com/service/injuries/json/#{ENV["tw2nujb3ysqw")
     @injured = []
     #uses the API to populate @injured with the names of players injured that week
     response['Injuries'].each do |key, value|
